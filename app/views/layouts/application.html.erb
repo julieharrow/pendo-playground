@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PendoPlayground</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'shared/navbar' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <% if user_signed_in? %>
+      <%= javascript_tag do %>
+        (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];
+        v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){
+        o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+        y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/f3cf1e0b-9420-47de-4c98-baf86c898fa5/pendo.js';
+        z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+
+        pendo.initialize({
+          apiKey: 'f3cf1e0b-9420-47de-4c98-baf86c898fa5',
+
+          visitor: {
+            id:  "<%= current_user.email %>",
+            name: "<%= current_user.name %>"
+          },
+
+          account: {
+            id: "<%= current_user.accountname %>"
+          }
+        });
+      <% end %>
+    <% end %>
+  </body>
+</html>

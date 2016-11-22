@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= @item.name %> built by  <%= @item.user.name %></div>
+    <div class="panel-body">
+      <%= @item.description %>
+      <br/>
+      <%= link_to 'Show', @item %> |
+      <%= link_to 'Edit', edit_item_path(@item) %> |
+      <%= link_to 'Destroy', @item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </div>
+  </div>
+<br />
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

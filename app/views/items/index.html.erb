@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h1 id="sandbox-heading">Sandbox Elements</h1>
+<% @items.each do |item| %>
+  <div class="panel panel-default" id="panel">
+    <div class="panel-heading" id="panel-heading"><%= item.name %> built by  <%= item.user.name %></div>
+    <div class="panel-body" id="panel-body">
+      <%= item.description %>
+      <br/>
+      <%= link_to 'Show', item, id:"show-link" %> |
+      <%= link_to 'Edit', edit_item_path(item), id:"edit-link"  %> |
+      <%= link_to 'Destroy', item, id:"destroy-link" , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </div>
+  </div>
+<% end %>
+<br>
+
+<%= link_to 'Build a New Sandbox Element', new_item_path, id:"new-link", class:"btn btn-default"  %>
